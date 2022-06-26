@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Pessoal</title>
+</head>
+<body>
+    <h1>Seja bem vindo</h1>
+    <a href="artigos/novo">Criar Novo Artigo</a>
+
+    <p>Total de posts: <%= numero  %> </p>
+
+    <% artigos.forEach(artigo => { %>
+        <div class="posts">
+            <h3><%=artigo.titulo%></h3>
+            <p><%=artigo.criadoEm.toLocaleDateString()%> </p>
+            <p><%=artigo.markdown %> </p>
+            <p>Visualizações: <%= artigo.click  %> </p>
+            <form action="/artigos/<%=artigo.id %>?_method=DELETE" method="POST">
+                <button type="submit">Deletar</button>
+            </form>
+            <a href="/artigos/<%=artigo.slug %>">Ver mais</a>
+        </div>
+     <% }); %> 
+</body>
+</html>
