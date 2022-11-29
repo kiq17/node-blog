@@ -1,15 +1,14 @@
-<div class="input-box">
-    <input type="text" name="titulo" required value="<%=artigo.titulo  %>">
-    <label for="titulo">Titulo</label>
-</div> 
-<div class="input-box">
-    <input type="text" name="descricao" required value="<%=artigo.descricao  %>">
-    <label for="descricao">Descricao</label>
+<div class="input-conteiner">
+    <div class="input-box">
+        <input type="text" name="titulo" required value="<%=artigo.titulo  %>" class="form-input" placeholder=" ">
+        <label for="titulo" class="form-label">Titulo</label>
+    </div> 
+    <div class="input-box">
+        <input type="text" name="descricao" required value="<%=artigo.descricao  %>" class="form-input" placeholder=" ">
+        <label for="descricao" class="form-label">Descricao</label>
+    </div>
 </div>
 <div class="input-box">
-    <textarea name="markdown" required value="<%=artigo.markdown%>"></textarea>
-    <label for="markdown">Markdown</label>
+    <textarea name="markdown" required class="form-text" placeholder=" "><%=artigo.markdown%></textarea>
+    <label for="markdown" class="form-label">Markdown</label>
 </div>
-
-<button type="submit">Criar</button>
-<a href="/">Voltar</a>

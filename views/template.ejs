@@ -1,28 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Oregano&family=Oswald:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="/js/main.js" defer></script>
     <title>Blog Pessoal</title>
 </head>
+
 <body>
-    <h1>Seja bem vindo</h1>
-    <a href="artigos/novo">Criar Novo Artigo</a>
-
-    <p>Total de posts: <%= numero  %> </p>
-
-    <% artigos.forEach(artigo => { %>
-        <div class="posts">
-            <h3><%=artigo.titulo%></h3>
-            <p><%=artigo.criadoEm.toLocaleDateString()%> </p>
-            <p><%=artigo.markdown %> </p>
-            <p>Visualizações: <%= artigo.click  %> </p>
-            <form action="/artigos/<%=artigo.id %>?_method=DELETE" method="POST">
-                <button type="submit">Deletar</button>
-            </form>
-            <a href="/artigos/<%=artigo.slug %>">Ver mais</a>
+    <header>
+        <h1>Blogi</h1>
+    </header>
+    <main class="conteiner">
+        <div class="actions">
+            <div class="first">
+                <a class="novo" href="artigos/novo">
+                    <span class="primeiro">Novo Artigo</span>
+                    <span class="segundo"><i class="fa-solid fa-plus"></i></span>
+                </a>
+                <p class="novo">
+                    <span class="primeiro">Total de posts: </span>
+                    <span class="segundo">
+                        <%=numero %>
+                    </span>
+                </p>
+            </div>
+            <div class="filtro">
+                <div class="drop">
+                    <p class="primeiro" id="text-filter">Filtros</p>
+                    <span class="segundo"><i class="fa-sharp fa-solid fa-filter"></i></span>
+                </div>
+                <ul class="menu-drop">
+                    <li><a class="link-filtro" href="/?q=visu">Mais Visualizados</a></li>
+                    <li><a class="link-filtro" href="/?q=antg">Mais Antigos</a></li>
+                    <li><a class="link-filtro" href="/?q=recent">Mais Recentes</a></li>
+                </ul>
+            </div>
         </div>
-     <% }); %> 
+        <% artigos.forEach(artigo=> { %>
+            <div class="posts">
+                <h3>
+                    <%=artigo.titulo%>
+                </h3>
+                <p>
+                    <%=artigo.criadoEm.toLocaleDateString()%>
+                </p>
+                <p>
+                    <%=artigo.markdown %>
+                </p>
+                <div class="info-post">
+                    <p><span><i class="fa-solid fa-eye"></i></span>
+                        <%= artigo.click %>
+                    </p>
+                    <form action="/artigos/<%=artigo.id %>?_method=DELETE" method="POST">
+                        <button class="btn-delete" type="submit">Deletar</button>
+                    </form>
+                    <a class="ver" href="/artigos/<%=artigo.slug %>">Ver mais</a>
+                </div>
+            </div>
+            <% }); %>
+    </main>
+
 </body>
+
 </html>

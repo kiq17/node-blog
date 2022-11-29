@@ -5,12 +5,16 @@ const rotaPrincipal = require('./rotas/home')
 const rotaArtigo = require('./rotas/artigo')
 const mongoose = require('mongoose')
 const methOverride = require('method-override')
+const path = require('path')
 
 mongoose.connect(process.env.DB_URL, (error) => {
     if (error) console.log(error)
 
     console.log('Banco conectado')
 })
+
+
+server.use(express.static(__dirname + '/public'));
 
 server.use(express.urlencoded({ extended: true }))
 server.use(methOverride('_method'))
